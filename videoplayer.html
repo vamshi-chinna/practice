@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Video Player</title>
+    <style>
+        body {
+            background:linear-gradient(to bottom left,red, pink, rgb(249, 190, 200)) ;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+            margin: 20px;
+            height: 100vh;
+        }
+        button{
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            padding: 5px ;
+            border: none;
+            border-radius: 10px;
+        }
+        button:hover{
+            border: 1px solid gray;
+
+        }
+
+        #video-container {
+            margin-top: 20px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Custom Video Player</h1>
+    <input id="url"type="text">
+    <button onclick="loadVideo()">Load video</button><br/>
+    <div id="video-container">
+        <video id="videoPlayer" width="560" height="315" controls>
+            <source src="",items=33328" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <button id="playPauseButton">Play/Pause</button>
+        <button id="skipBackwardButton">Skip Backward 10s</button>
+        <button id="skipForwardButton">Skip Forward 10s</button>
+    </div>
+
+    <script>
+        const URL=document.getElementById("url")
+        const videoPlayer = document.getElementById('videoPlayer');
+        const playPauseButton = document.getElementById('playPauseButton');
+        const skipBackwardButton = document.getElementById('skipBackwardButton');
+        const skipForwardButton = document.getElementById('skipForwardButton');
+
+        playPauseButton.addEventListener('click', togglePlayPause);
+        skipBackwardButton.addEventListener('click', skipBackward);
+        skipForwardButton.addEventListener('click', skipForward);
+       
+function loadVideo(){
+    videoPlayer.src=URL.value
+}
+        function togglePlayPause() {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+            } else {
+                videoPlayer.pause();
+            }
+        }
+
+        function skipBackward() {
+            videoPlayer.currentTime -= 10;
+        }
+
+        function skipForward() {
+            videoPlayer.currentTime += 10;
+        }
+    </script>
+</body>
+
+</html>
